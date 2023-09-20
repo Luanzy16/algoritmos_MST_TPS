@@ -12,25 +12,26 @@ package data;
 
 import java.util.*;
 
-class Kruskal {
-  class Edge implements Comparable<Edge> {
-    int src, dest, weight;
+public class Kruskal {
+  public class Edge implements Comparable<Edge> {
+    public int src, dest, weight;
 
+    @Override
     public int compareTo(Edge compareEdge) {
       return this.weight - compareEdge.weight;
     }
   };
 
   // Union
-  class subset {
-    int parent, rank;
+  public class subset {
+    public int parent, rank;
   };
 
-  int vertices, edges;
-  Edge edge[];
+  public int vertices, edges;
+  public Edge edge[];
 
   // Graph creation
-  Kruskal(int v, int e) {
+  public Kruskal(int v, int e) {
     vertices = v;
     edges = e;
     edge = new Edge[edges];
@@ -38,13 +39,13 @@ class Kruskal {
       edge[i] = new Edge();
   }
 
-  int find(subset subsets[], int i) {
+  public int find(subset subsets[], int i) {
     if (subsets[i].parent != i)
       subsets[i].parent = find(subsets, subsets[i].parent);
     return subsets[i].parent;
   }
 
-  void Union(subset subsets[], int x, int y) {
+  public void Union(subset subsets[], int x, int y) {
     int xroot = find(subsets, x);
     int yroot = find(subsets, y);
 
@@ -59,10 +60,11 @@ class Kruskal {
   }
 
   // Applying Krushkal Algorithm
-  void KruskalAlgo() {
+  public String KruskalAlgo() {
     Edge result[] = new Edge[vertices];
     int e = 0;
     int i = 0;
+    String resultado = "";
     for (i = 0; i < vertices; ++i)
       result[i] = new Edge();
 
@@ -87,46 +89,12 @@ class Kruskal {
         Union(subsets, x, y);
       }
     }
-    for (i = 0; i < e; ++i)
-      System.out.println(result[i].src + " - " + result[i].dest + ": " + result[i].weight);
+    for (i = 0; i < e; ++i){
+      resultado += result[i].src + " - " + result[i].dest + ": " + result[i].weight+ "\n";
+    }
+  
+    return resultado;
   }
 
-  public static void main(String[] args) {
-    int vertices = 6; // Number of vertices
-    int edges = 8; // Number of edges
-    Kruskal G = new Kruskal(vertices, edges);
 
-    G.edge[0].src = 0;
-    G.edge[0].dest = 1;
-    G.edge[0].weight = 4;
-
-    G.edge[1].src = 0;
-    G.edge[1].dest = 2;
-    G.edge[1].weight = 4;
-
-    G.edge[2].src = 1;
-    G.edge[2].dest = 2;
-    G.edge[2].weight = 2;
-
-    G.edge[3].src = 2;
-    G.edge[3].dest = 3;
-    G.edge[3].weight = 3;
-
-    G.edge[4].src = 2;
-    G.edge[4].dest = 5;
-    G.edge[4].weight = 2;
-
-    G.edge[5].src = 2;
-    G.edge[5].dest = 4;
-    G.edge[5].weight = 4;
-
-    G.edge[6].src = 3;
-    G.edge[6].dest = 4;
-    G.edge[6].weight = 3;
-
-    G.edge[7].src = 5;
-    G.edge[7].dest = 4;
-    G.edge[7].weight = 3;
-    G.KruskalAlgo();
-  }
 }

@@ -7,11 +7,12 @@ package data;
 
 import java.util.Arrays;
 
-class Prim {
+public class Prim {
 
-  public void prim(int G[][], int V) {
+  public String prim(int G[][], int V) {
 
     int INF = 9999999;
+    String resultado = "";
 
     int no_edge; // número de aristas
 
@@ -58,23 +59,11 @@ class Prim {
           }
         }
       }
-      System.out.println(x + " - " + y + " : " + G[x][y]);
+      resultado += x + " - " + y + " : " + G[x][y]+"\n";
       seleccionado[y] = true;
       no_edge++;
     }
+      return resultado;
   }
 
-  public static void main(String[] args) {
-    Prim g = new Prim();
-
-    // número de vértices en el grafo
-    int V = 5;
-
-    // crear una matriz 2D de tamaño 5x5
-    // para la matriz de adyacencia que representa el grafo
-    int[][] G = { { 0, 9, 75, 0, 0 }, { 9, 0, 95, 19, 42 }, { 75, 95, 0, 51, 66 }, { 0, 19, 51, 0, 31 },
-        { 0, 42, 66, 31, 0 } };
-
-    g.prim(G, V);
-  }
 }

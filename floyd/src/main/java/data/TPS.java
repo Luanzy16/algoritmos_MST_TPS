@@ -54,8 +54,8 @@ public class TPS {
         
         return camino;
     }
-
-    public static void main(String[] args) {
+    
+    public String imprimirCamino(){
         int[][] ciudades = {
             {0, 0}, // Ciudad 0
             {1, 3}, // Ciudad 1
@@ -65,11 +65,16 @@ public class TPS {
 
         List<Integer> camino = vecinoMasCercano(ciudades);
 
-        System.out.println("El camino más corto es:");
+        String resultado = "El camino más corto es:\n";
         for (int ciudad : camino) {
-            System.out.print("Ciudad " + ciudad + " -> ");
+            resultado += "Ciudad " + ciudad + " -> ";
         }
-        System.out.println("Ciudad 0"); // Regresar a la ciudad de inicio
+        resultado += "Ciudad 0"; // Regresar a la ciudad de inicio
+        
+        
+        return resultado;
     }
+
+    
 }
 
