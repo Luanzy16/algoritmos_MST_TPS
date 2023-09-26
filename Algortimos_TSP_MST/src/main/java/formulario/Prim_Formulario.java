@@ -5,6 +5,7 @@
 package formulario;
 
 import data.Prim;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,8 @@ public class Prim_Formulario extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        vetices = new javax.swing.JTextPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +63,8 @@ public class Prim_Formulario extends javax.swing.JFrame {
 
         jLabel5.setIcon(new javax.swing.ImageIcon(System.getProperty("user.dir")+"\\src\\main\\java\\Imagenes\\prim_inicio.png"));
         jLabel5.setText("jLabel5");
+
+        jScrollPane2.setViewportView(vetices);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -87,6 +92,10 @@ public class Prim_Formulario extends javax.swing.JFrame {
                         .addGap(652, 652, 652)
                         .addComponent(jButton1)))
                 .addContainerGap(324, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(191, 191, 191))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -108,7 +117,9 @@ public class Prim_Formulario extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addGap(147, 147, 147))
+                .addGap(38, 38, 38)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(83, 83, 83))
         );
 
         pack();
@@ -121,11 +132,20 @@ public class Prim_Formulario extends javax.swing.JFrame {
         int V = 5;
 
         // crear una matriz 2D de tamaño 5x5
-        // para la matriz de adyacencia que representa el grafo
-        int[][] G = { { 0, 9, 75, 0, 0 }, { 9, 0, 95, 19, 42 }, { 75, 95, 0, 51, 66 }, { 0, 19, 51, 0, 31 },
-            { 0, 42, 66, 31, 0 } };
+        // MAtriz de ejemplo
+        //int[][] G = { { 0, 9, 75, 0, 0 }, { 9, 0, 95, 19, 42 }, { 75, 95, 0, 51, 66 }, { 0, 19, 51, 0, 31 },{ 0, 42, 66, 31, 0 } };
+        
+        int dato = Integer.parseInt(this.vetices.getText()); 
+        int graph[][] = new int[dato][dato];
+    
+        for (int i=0; i<dato; i++){
+            for (int j=0; j<dato; j++){
+                graph[i][j] = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dato para la posicion ["+i+","+j+"]" ));
+            }
+        }
 
-       this.jTextPane1.setText(g.prim(G, V));
+
+       this.jTextPane1.setText(g.prim(graph, V));
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -171,6 +191,8 @@ public class Prim_Formulario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextPane jTextPane1;
+    public javax.swing.JTextPane vetices;
     // End of variables declaration//GEN-END:variables
 }

@@ -9,6 +9,7 @@ package data;
  * @author Usuario
  */
 import java.util.*;
+import javax.swing.JOptionPane;
 
 public class TPS {
 
@@ -56,12 +57,17 @@ public class TPS {
     }
     
     public String imprimirCamino(){
-        int[][] ciudades = {
-            {0, 0}, // Ciudad 0
-            {1, 3}, // Ciudad 1
-            {4, 2}, // Ciudad 2
-            {3, 1}  // Ciudad 3
-        };
+        int ciudades[][] = new int[4][2];
+        
+        //matriz ejemplo
+        //{0, 0}, {1, 3},{4, 2},{3, 1} 
+        
+        for (int i=0; i<4; i++){
+            for (int j=0; j<2; j++){
+                ciudades[i][j] = Integer.parseInt(JOptionPane.showInputDialog("Ingrese dato para la posicion ["+i+","+j+"]" ));
+            }
+        }
+
 
         List<Integer> camino = vecinoMasCercano(ciudades);
 
